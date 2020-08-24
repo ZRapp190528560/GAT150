@@ -37,6 +37,7 @@ namespace AZ {
 		Vector2 operator - () { return Vector2{ -x, -y }; }
 
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
+		friend std::ostream& operator << (std::ostream& stream, Vector2& v);
 
 		float length() const;
 		float lengthsqr() const;

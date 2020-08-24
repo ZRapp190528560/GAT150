@@ -1,6 +1,7 @@
 #pragma once
 
 #include <windows.h>
+#include <SDL.h>
 
 namespace AZ {
 	struct Color {
@@ -64,6 +65,7 @@ namespace AZ {
 		Color& operator /= (float s) { r /= s; g /= s; b /= s; return *this; }
 
 		friend std::istream& operator >> (std::istream& stream, Color& c);
+		friend std::ostream& operator << (std::ostream& stream, Color& c);
 
 		SDL_Colour pack888() const;
 

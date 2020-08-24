@@ -2,11 +2,6 @@
 #include "Renderer.h"
 
 bool AZ::renderer::startup(){
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		return false;
-	}
-
 	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 
 	return true;
@@ -17,7 +12,6 @@ void AZ::renderer::shutdown(){
 }
 
 void AZ::renderer::update(){
-
 }
 
 bool AZ::renderer::createWindow(const std::string& name, int width, int height)

@@ -24,6 +24,12 @@
     <Filter Include="Input">
       <UniqueIdentifier>{0e199a60-5cb3-4a2e-9501-ff095293a515}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{2a88a861-6abf-4dbb-a9de-f26e5f99eea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{211f778b-7691-4d45-812d-14074b3cf7aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -74,6 +80,48 @@
     <ClInclude Include="Input\Input.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PhysicsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RenderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Json.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Assert.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\factory.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Singleton.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\ObjectFactory.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Scene.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimationComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -105,6 +153,30 @@
     </ClCompile>
     <ClCompile Include="Input\Input.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PhysicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Json.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Assert.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\ObjectFactory.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Scene.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimationComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

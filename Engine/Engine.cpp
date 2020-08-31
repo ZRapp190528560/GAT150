@@ -13,6 +13,8 @@ namespace AZ {
 		m_systems.push_back(new renderer);
 		m_systems.push_back(new inputSystem);
 		m_systems.push_back(new resourceManager);
+		m_systems.push_back(new physicsSystem);
+		m_systems.push_back(new audioSystem);
 
 		for(auto system : m_systems) {
 			system->startup();

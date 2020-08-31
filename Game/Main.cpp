@@ -7,6 +7,7 @@
 #include "Core/Json.h"
 #include "Object/ObjectFactory.h"
 #include "Object/Scene.h"
+#include "TileMap.h"
 
 AZ::engine engine;
 AZ::scene scene;
@@ -23,12 +24,16 @@ int main(int, char**){
 	AZ::json::Load("scene.txt", document);
 	scene.read(document);
 
-	//for (size_t i = 0; i < 10; i++){
-	//	AZ::gameObject* gameObject = AZ::objectFactory::instance().create<AZ::gameObject>("ProtoExplosion");
-	//	gameObject->m_transform.position = AZ::Vector2{ AZ::random(0, 800), AZ::random(0, 600) };
-	//	gameObject->m_transform.angle = AZ::random(0, 360);
-	//	scene.addGameObject(gameObject); 
-	//}
+	AZ::tileMap tileMap;
+	AZ::json::Load("TileMap.txt", document);
+	tileMap.read(document);
+	tileMap.create(&scene);
+
+	/*for (size_t i = 0; i < 10; i++){
+		AZ::gameObject* gameObject = AZ::objectFactory::instance().create<AZ::gameObject>("ProtoCoin");
+		gameObject->m_transform.position = AZ::Vector2{ AZ::random(0, 800), AZ::random(0, 600) };
+		scene.addGameObject(gameObject); 
+	}*/
 
 
 	SDL_Event event;

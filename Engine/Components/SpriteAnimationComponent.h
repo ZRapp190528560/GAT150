@@ -6,7 +6,7 @@ namespace AZ {
 	public:
 		virtual bool create(void* data = nullptr) override;
 		virtual void destroy() override;
-		virtual object* clone() override { return new spriteAnimationComponent(*this); }
+		virtual object* clone() const override { return new spriteAnimationComponent(*this); }
 
 		void read(const rapidjson::Value& value);
 

@@ -70,6 +70,18 @@ namespace AZ {
 		for (auto gameObject : m_gameObjects) {
 			gameObject->update();
 		}
+
+		auto iter = m_gameObjects.begin();
+		while (iter != m_gameObjects.end()) {
+			if ((*iter)->m_flags[gameObject::eFlags::DESTROY]) {
+				(*iter)->destroy();
+				delete (*iter);
+				iter = m_gameObjects.erase(iter);
+			}
+			else {
+				iter++;
+			}
+		}
 	}
 
 	void scene::draw() {
@@ -86,6 +98,18 @@ namespace AZ {
 		}
 
 		return nullptr;
+	}
+
+	std::vector<gameObject*> scene::findGameObjectWithTag(const std::string& tag)
+	{
+		std::vector<gameObject*> gameObjects;
+		for (auto gameObject : m_gameObjects) {
+			if (gameObject->m_tag == tag) {
+				gameObjects.push_back(gameObject);
+			}
+		}
+
+		return gameObjects;
 	}
 
 	void scene::addGameObject(gameObject* gameObject) {

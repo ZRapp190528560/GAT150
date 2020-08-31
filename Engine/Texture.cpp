@@ -52,8 +52,7 @@ void AZ::texture::draw(const SDL_Rect& source, const Vector2& position, float an
 	SDL_RenderCopyEx(m_renderer, m_texture, &source, &rect, angle, nullptr, SDL_FLIP_NONE);
 }
 
-AZ::Vector2 AZ::texture::getSize()
-{
+AZ::Vector2 AZ::texture::getSize(){
 	int w, h;
 	SDL_QueryTexture(m_texture, NULL, NULL, &w, &h);
 

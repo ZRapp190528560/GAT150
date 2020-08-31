@@ -7,6 +7,11 @@
 
 AZ::gameObject::gameObject(const gameObject& other){
 	m_name = other.m_name;
+	m_tag = other.m_tag;
+	m_lifetime = other.m_lifetime;
+
+	m_flags = other.m_flags;
+
 	m_transform = other.m_transform;
 	m_engine = other.m_engine;
 
@@ -29,6 +34,13 @@ void AZ::gameObject::destroy(){
 
 void AZ::gameObject::read(const rapidjson::Value& value){
 	json::Get(value, "name", m_name);
+	json::Get(value, "tag", m_tag);
+	json::Get(value, "lifetime", m_lifetime);
+
+	bool transient = m_flags[eFlags::TRANSIENT];
+	json::Get(value, "transient", transient);
+	m_flags[eFlags::TRANSIENT] = transient;
+
 	AZ::json::Get(value, "position", m_transform.position);
 	AZ::json::Get(value, "scale", m_transform.scale);
 	AZ::json::Get(value, "angle", m_transform.angle);
@@ -41,22 +53,19 @@ void AZ::gameObject::read(const rapidjson::Value& value){
 	}
 }
 
-void AZ::gameObject::readComponents(const rapidjson::Value& value)
-{
-	for (rapidjson::SizeType i = 0; i < value.Size(); i++)
-	{
+void AZ::gameObject::readComponents(const rapidjson::Value& value) {
+	for (rapidjson::SizeType i = 0; i < value.Size(); i++) {
 		const rapidjson::Value& componentValue = value[i];
-		if (componentValue.IsObject())
-		{
+		if (componentValue.IsObject()) {
 			std::string typeName;
 			AZ::json::Get(componentValue, "type", typeName);
 
 			AZ::component* component = AZ::objectFactory::instance().create<AZ::component>(typeName);
-				if (component){
-					component->create(this);
-					component->read(componentValue);
-					addComponent(component);
-				}
+			if (component){
+				component->create(this);
+				component->read(componentValue);
+				addComponent(component);
+			}
 		}
 	}
 }
@@ -66,6 +75,11 @@ void AZ::gameObject::update(){
 	for (auto component : m_components) {
 		component->update();
 	}
+
+	if (m_flags[eFlags::TRANSIENT]) {
+		m_lifetime -= m_engine->getTimer().deltaTime();
+		m_flags[eFlags::DESTROY] = (m_lifetime <= 0);
+	}
 }
 
 void AZ::gameObject::draw(){
@@ -73,6 +87,26 @@ void AZ::gameObject::draw(){
 	if (component) {
 		component->draw();
 	}
+}
+
+void AZ::gameObject::beginContact(gameObject* otherObject){
+	m_contacts.push_back(otherObject);
+}
+
+void AZ::gameObject::endContact(gameObject* otherObject){
+	m_contacts.remove(otherObject);
+}
+
+std::vector<AZ::gameObject*> AZ::gameObject::getContactsWithTag(const std::string& tag){
+	std::vector<AZ::gameObject*> contacts;
+
+	for (auto contact : m_contacts) {
+		if (contact->m_tag == tag) {
+			contacts.push_back(contact);
+		}
+	}
+
+	return contacts;
 }
 
 void AZ::gameObject::addComponent(component* comp){

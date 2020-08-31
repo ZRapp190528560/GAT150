@@ -6,7 +6,7 @@ namespace AZ {
 	public:
 		virtual bool create(void* data = nullptr) = 0;
 		virtual void destroy() = 0;
-		virtual object* clone() { return nullptr; }
+		virtual object* clone() const { return nullptr; }
 
 		virtual void update() = 0;
 

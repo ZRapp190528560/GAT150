@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)\Middleware\json\include\rapidjson;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)Middleware\json\include\rapidjson;$(SolutionDir)Middleware\box2d\include;$(SolutionDir)Middleware\FMOD\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)\Middleware\json\include\rapidjson;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)Middleware\json\include\rapidjson;$(SolutionDir)Middleware\box2d\include;$(SolutionDir)Middleware\FMOD\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)\Middleware\json\include\rapidjson;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)Middleware\json\include\rapidjson;$(SolutionDir)Middleware\box2d\include;$(SolutionDir)Middleware\FMOD\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)\Middleware\json\include\rapidjson;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Middleware\SDL2-devel-2.0.12-VC\include;$(SolutionDir)Engine;$(SolutionDir)Middleware\json\include\rapidjson;$(SolutionDir)Middleware\box2d\include;$(SolutionDir)Middleware\FMOD\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\PlayerComponent.cpp" />
+    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\PlayerComponent.h" />
+    <ClInclude Include="TileMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Build\scene.txt" />
+    <Text Include="..\Build\TileMap.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

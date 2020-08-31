@@ -4,6 +4,8 @@
 #include "Resource/ResourceManager.h"
 #include "Input/Input.h"
 #include "Core/Timer.h"
+#include "Physics/PhysicsSystem.h"
+#include "Audio/AudioSystem.h"
 
 namespace AZ {
 	class system;

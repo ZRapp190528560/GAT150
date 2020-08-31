@@ -23,5 +23,5 @@ void AZ::spriteComponent::update(){
 
 void AZ::spriteComponent::draw(){
 	texture* texture = m_owner->m_engine->getSystem<AZ::resourceManager>()->get<AZ::texture>(m_textureName, m_owner->m_engine->getSystem<AZ::renderer>());
-	texture->draw(m_rect, m_owner->m_transform.position, m_owner->m_transform.angle, AZ::Vector2{ 1.0f, 1.0f } * m_owner->m_transform.scale);
+	texture->draw(m_rect, m_owner->m_transform.position, m_owner->m_transform.angle, AZ::Vector2{ 1.0f, 1.0f } * m_owner->m_transform.scale, m_origin);
 }

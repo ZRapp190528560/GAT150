@@ -3,24 +3,38 @@
 #include "Math/Transform.h"
 #include "Engine.h"
 #include <vector>
+#include <bitset>
 
 namespace AZ {
 	class component;
 
 	class gameObject : public object {
 	public:
+		enum eFlags {
+			ACTIVE,
+			VISIBLE,
+			DESTROY,
+			TRANSIENT
+		};
+
+	public:
 		gameObject() = default;
 		gameObject(const gameObject& other);
 
 		virtual bool create(void* data = nullptr) override;
 		virtual void destroy() override;
-		virtual object* clone() override { return new gameObject{ *this }; }
+		virtual object* clone() const override { return new gameObject{ *this }; }
 
 		void read(const rapidjson::Value& value) override;
 		void readComponents(const rapidjson::Value& value);
 
 		void update();
 		void draw();
+
+		void beginContact(gameObject* otherObject);
+		void endContact(gameObject* otherObject);
+
+		std::vector<gameObject*> getContactsWithTag(const std::string& tag);
 
 		template<typename T>
 		T* getComponent() {
@@ -42,10 +56,16 @@ namespace AZ {
 
 	public:
 		std::string m_name;
-		engine* m_engine;
+		std::string m_tag;
+		float m_lifetime{ 0 };
+
+		std::bitset<32> m_flags;
+
+		class engine* m_engine;
 		Transform m_transform;
 
 	protected:
 		std::vector<component*> m_components;
+		std::list<gameObject*> m_contacts;
 	};
 }

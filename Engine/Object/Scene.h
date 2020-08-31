@@ -19,6 +19,7 @@ namespace AZ {
 		void draw();
 
 		gameObject* find(const std::string& name);
+		std::vector<gameObject*> findGameObjectWithTag(const std::string& tag);
 
 		void addGameObject(gameObject* gameObject);
 		void removeGameObject(gameObject* gameObject);

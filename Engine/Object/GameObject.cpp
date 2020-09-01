@@ -4,6 +4,7 @@
 #include "Components/RenderComponent.h"
 #include "Core/factory.h"
 #include "Object/ObjectFactory.h"
+#include "Object/Scene.h"
 
 AZ::gameObject::gameObject(const gameObject& other){
 	m_name = other.m_name;
@@ -14,6 +15,7 @@ AZ::gameObject::gameObject(const gameObject& other){
 
 	m_transform = other.m_transform;
 	m_engine = other.m_engine;
+	m_scene = other.m_scene;
 
 	for (component* component : other.m_components) {
 		AZ::component* clone = dynamic_cast<AZ::component*>(component->clone());
@@ -23,7 +25,8 @@ AZ::gameObject::gameObject(const gameObject& other){
 }
 
 bool AZ::gameObject::create(void* data){
-	m_engine = static_cast<engine*>(data);
+	m_scene = static_cast<scene*>(data);
+	m_engine = m_scene->m_engine;
 
 	return true;
 }
@@ -91,10 +94,24 @@ void AZ::gameObject::draw(){
 
 void AZ::gameObject::beginContact(gameObject* otherObject){
 	m_contacts.push_back(otherObject);
+
+	AZ::event t_event;
+	t_event.type = "CollisionEnter";
+	t_event.sender = otherObject;
+	t_event.receiver = this;
+
+	eventManager::instance().notify(t_event);
 }
 
 void AZ::gameObject::endContact(gameObject* otherObject){
 	m_contacts.remove(otherObject);
+
+	AZ::event t_event;
+	t_event.type = "CollisionExit";
+	t_event.sender = otherObject;
+	t_event.receiver = this;
+
+	eventManager::instance().notify(t_event);
 }
 
 std::vector<AZ::gameObject*> AZ::gameObject::getContactsWithTag(const std::string& tag){

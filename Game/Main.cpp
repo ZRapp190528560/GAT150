@@ -4,6 +4,7 @@
 #include "Engine.h"
 #include "Object/GameObject.h"
 #include "Components/PlayerComponent.h"
+#include "Components/EnemyComponent.h"
 #include "Core/Json.h"
 #include "Object/ObjectFactory.h"
 #include "Object/Scene.h"
@@ -19,6 +20,7 @@ int main(int, char**){
 
 	AZ::objectFactory::instance().initialize();
 	AZ::objectFactory::instance().f_register("PlayerComponent", new AZ::creator<AZ::playerComponent, AZ::object>);
+	AZ::objectFactory::instance().f_register("EnemyComponent", new AZ::creator<AZ::enemyComponent, AZ::object>);
 
 	rapidjson::Document document;
 	AZ::json::Load("scene.txt", document);
@@ -28,13 +30,6 @@ int main(int, char**){
 	AZ::json::Load("TileMap.txt", document);
 	tileMap.read(document);
 	tileMap.create(&scene);
-
-	/*for (size_t i = 0; i < 10; i++){
-		AZ::gameObject* gameObject = AZ::objectFactory::instance().create<AZ::gameObject>("ProtoCoin");
-		gameObject->m_transform.position = AZ::Vector2{ AZ::random(0, 800), AZ::random(0, 600) };
-		scene.addGameObject(gameObject); 
-	}*/
-
 
 	SDL_Event event;
 	bool quit = false;

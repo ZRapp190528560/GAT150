@@ -39,7 +39,7 @@ namespace AZ {
 				AZ::gameObject* gameObject = AZ::objectFactory::instance().create<AZ::gameObject>(typeName);
 
 				if (gameObject) {
-					gameObject->create(m_engine);
+					gameObject->create(this);
 					gameObject->read(objectValue);
 					addGameObject(gameObject);
 				}
@@ -57,7 +57,7 @@ namespace AZ {
 				AZ::gameObject* gameObject = AZ::objectFactory::instance().create<AZ::gameObject>(typeName);
 
 				if (gameObject) {
-					gameObject->create(m_engine);
+					gameObject->create(this);
 					gameObject->read(objectValue);
 				
 					objectFactory::instance().f_register(gameObject->m_name, new prototype<object>(gameObject));

@@ -25,6 +25,8 @@ namespace AZ {
 		void removeGameObject(gameObject* gameObject);
 		void removeAllGameObjects();
 
+		friend class gameObject;
+
 	protected:
 		engine* m_engine{ nullptr };
 		std::list<gameObject*> m_gameObjects;

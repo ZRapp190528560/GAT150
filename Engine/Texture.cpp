@@ -22,7 +22,7 @@ void AZ::texture::destroy() {
 	SDL_DestroyTexture(m_texture);
 }
 
-void AZ::texture::draw(const Vector2& position, float angle, const Vector2& scale, const Vector2& origin) {
+void AZ::texture::draw(const Vector2& position, float angle, const Vector2& scale, const Vector2& origin, const bool flip) {
 	Vector2 size = getSize();
 	size *= scale;
 
@@ -34,10 +34,10 @@ void AZ::texture::draw(const Vector2& position, float angle, const Vector2& scal
 	rect.w = static_cast<int>(size.x);
 	rect.h = static_cast<int>(size.y);
 
-	SDL_RenderCopyEx(m_renderer, m_texture, nullptr, &rect, angle, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(m_renderer, m_texture, nullptr, &rect, angle, nullptr, (flip) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
-void AZ::texture::draw(const SDL_Rect& source, const Vector2& position, float angle, const Vector2& scale, const Vector2& origin) {
+void AZ::texture::draw(const SDL_Rect& source, const Vector2& position, float angle, const Vector2& scale, const Vector2& origin, const bool flip) {
 	Vector2 size = { source.w, source.h };
 	size *= scale;
 
@@ -49,7 +49,7 @@ void AZ::texture::draw(const SDL_Rect& source, const Vector2& position, float an
 	rect.w = static_cast<int>(size.x);
 	rect.h = static_cast<int>(size.y);
 
-	SDL_RenderCopyEx(m_renderer, m_texture, &source, &rect, angle, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(m_renderer, m_texture, &source, &rect, angle, nullptr, (flip) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
 AZ::Vector2 AZ::texture::getSize(){

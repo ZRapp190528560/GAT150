@@ -2,35 +2,49 @@
   "Prototypes": [
     {
       "type": "GameObject",
-      "name": "ProtoExplosion",
-      "tag": "FX",
-      "transient": true,
-      "lifetime": 1.5,
+      "name": "Tile01",
+      "tag": "Floor",
+      "transient": false,
       "position": [
-        400,
-        300
+        0,
+        0
       ],
       "scale": 1,
       "angle": 0,
       "Components": [
         {
-          "type": "SpriteAnimationComponent",
-          "texture": "explosion.png",
+          "type": "SpriteComponent",
+          "texture": "Textures/tile01.png",
           "origin": [
             0.5,
             0.5
           ],
-          "numX": 5,
-          "numY": 5,
-          "numFrames": 25,
-          "fps": 30
+          "rect": [
+            0,
+            0,
+            64,
+            64
+          ]
+        },
+        {
+          "type": "RigidBodyComponent",
+          "isDynamic": false,
+          "fixRotate": true,
+          "isSensor": false,
+          "size": [
+            32,
+            32
+          ],
+          "density": 1,
+          "friction": 1,
+          "restitution": 0
         }
       ]
     },
     {
       "type": "GameObject",
       "name": "ProtoCoin",
-      "tag": "FX",
+      "tag": "Coin",
       "transient": false,
       "position": [
         400,
@@ -65,6 +79,49 @@
           "restitution": 0
         }
       ]
+    },
+    {
+      "type": "GameObject",
+      "name": "ProtoBat",
+      "tag": "enemy",
+      "transient": false,
+      "position": [
+        400,
+        300
+      ],
+      "scale": 1,
+      "angle": 0,
+      "Components": [
+        {
+          "type": "SpriteAnimationComponent",
+          "texture": "Textures/bat.png",
+          "origin": [
+            0.5,
+            0.5
+          ],
+          "numX": 4,
+          "numY": 1,
+          "numFrames": 4,
+          "fps": 10
+        },
+        {
+          "type": "EnemyComponent"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "isDynamic": true,
+          "fixRotate": true,
+          "isSensor": false,
+          "size": [
+            16,
+            16
+          ],
+          "density": 1,
+          "friction": 1,
+          "restitution": 0,
+          "gravityScale": 0.0
+        }
+      ]
     }
   ],
   "GameObjects": [
@@ -82,8 +139,8 @@
           "type": "SpriteComponent",
           "texture": "Textures/background.png",
           "origin": [
-            0.0,
-            0.0
+            0,
+            0
           ],
           "rect": [
             0,
@@ -91,46 +148,6 @@
             800,
             600
           ]
-        }
-      ]
-    },
-    {
-      "type": "GameObject",
-      "name": "Ground",
-      "tag": "Floor",
-      "position": [
-        400,
-        500
-      ],
-      "scale": 1,
-      "angle": 0,
-      "Components": [
-        {
-          "type": "SpriteComponent",
-          "texture": "Textures/ground.png",
-          "origin": [
-            0.5,
-            1.5
-          ],
-          "rect": [
-            0,
-            0,
-            800,
-            32
-          ]
-        },
-        {
-          "type": "RigidBodyComponent",
-          "isDynamic": false,
-          "fixRotate": true,
-          "isSensor": false,
-          "size": [
-            400,
-            16
-          ],
-          "density": 1,
-          "friction": 1,
-          "restitution": 0
         }
       ]
     },
@@ -151,38 +168,37 @@
           "fixRotate": true,
           "isSensor": false,
           "size": [
-            16,
-            32
+            24,
+            16
           ],
           "density": 1,
           "friction": 1,
-          "restitution": 0.0
+          "restitution": 0,
+          "gravityScale": 2.0
         },
         {
           "type": "PlayerComponent"
         },
         {
-          "type": "SpriteAnimationComponent",
-          "texture": "Textures/player.png",
+          "type": "SpriteComponent",
+          "texture": "Textures/CorgiStationary.png",
           "origin": [
             0.5,
             0.5
           ],
-           "origin": [
-            0.5,
-            0.5
-          ],
-          "numX": 8,
-          "numY": 1,
-          "numFrames": 8,
-          "fps": 15
+          "rect": [
+            0,
+            0,
+            48,
+            32
+          ]
         },
         {
-			"type":"AudioComponent",
-			"sound":"Jump.wav",
-			"playOnAwake": true,
-			"loop": false
-		}
+          "type": "AudioComponent",
+          "sound": "Sounds/Jump.wav",
+          "playOnAwake": true,
+          "loop": false
+        }
       ]
     }
   ]

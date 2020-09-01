@@ -11,6 +11,7 @@ namespace AZ {
 			float density{ 0 };
 			float friction{ 1 };
 			float restitution{ 0.3f };
+			float gravityScale{ 1.0f };
 			bool fixRotate{ false };
 			bool isDynamic{ false };
 			bool isSensor{ false };

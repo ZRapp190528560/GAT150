@@ -9,5 +9,8 @@ namespace AZ {
 		virtual object* clone() const override { return new playerComponent(*this); }
 
 		virtual void update() override;
+
+		void collisionEnter(const AZ::event& event);
+		void collisionExit(const AZ::event& event);
 	};
 }

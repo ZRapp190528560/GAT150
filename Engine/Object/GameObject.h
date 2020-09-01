@@ -7,6 +7,7 @@
 
 namespace AZ {
 	class component;
+	class scene;
 
 	class gameObject : public object {
 	public:
@@ -61,8 +62,9 @@ namespace AZ {
 
 		std::bitset<32> m_flags;
 
-		class engine* m_engine;
 		Transform m_transform;
+		class engine* m_engine{ nullptr };
+		scene* m_scene{ nullptr };
 
 	protected:
 		std::vector<component*> m_components;
